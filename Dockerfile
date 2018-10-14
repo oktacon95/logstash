@@ -20,7 +20,7 @@ RUN set -ex \
 # Following command doesn't work cause of our lovely education network. Therefore, we have to cheat a little bit
 # RUN curl -O https://artifacts.elastic.co/downloads/logstash/${LOGSTASH_PACKAGE}
 
-COPY ./logstash-6.4.0.tar.gz /
+COPY ../../data/logstash-6.4.0.tar.gz /
 
 RUN tar xzf ${LOGSTASH_PACKAGE} -C ${LOGSTASH_HOME} --strip-components=1 \
  && rm -f ${LOGSTASH_PACKAGE} \
