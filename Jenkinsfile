@@ -5,6 +5,9 @@ timestamps {
   stage ('checkout repository') {
    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_User', url: 'https://github.com/oktacon95/logstash']]]) 
   }
+  stage ('prepare environment') {
+   sh 'cp ../../data/logstash-6.4.0.tar.gz .'
+  }
   stage ('build docker image') {
    sh 'docker build -t mylogstash --build-arg GEMS="logstash-filter-cpu_temp" .'
   }
