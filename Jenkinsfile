@@ -6,7 +6,7 @@ timestamps {
    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_User', url: 'https://github.com/oktacon95/logstash']]]) 
   }
   stage ('build docker image') {
-   sh "docker build -t mylogstash ." 
+   sh "docker build -t mylogstash --build-arg GEMS="logstash-filter-cpu_temp ." 
   }
   stage ('stop old docker image') {
    sh "docker stop logstash" 
