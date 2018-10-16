@@ -9,7 +9,7 @@ timestamps {
    sh 'cp ../../data/logstash-6.4.0.tar.gz .'
   }
   stage ('build docker image') {
-   sh 'docker build -t mylogstash --build-arg GEMS="logstash-filter-cpu_temp" .'
+   sh 'docker build --no-cache -t mylogstash --build-arg GEMS="logstash-filter-cpu_temp" .'
   }
   stage ('stop old docker image') {
    sh "docker stop logstash" 
